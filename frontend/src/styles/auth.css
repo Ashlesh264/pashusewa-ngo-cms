@@ -1,0 +1,153 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+}
+
+/* =========================
+   AUTH CONTAINER
+========================= */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   CARD
+========================= */
+.auth-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 340px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+.auth-title {
+  color: #2ecc71;
+  margin-bottom: 5px;
+}
+
+.auth-subtitle {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.auth-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #2ecc71;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.auth-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff7a00;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.auth-button:hover {
+  background-color: #e56f00;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+.auth-error {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.auth-success {
+  color: green;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* =========================
+   LINKS
+========================= */
+.auth-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.auth-link span {
+  color: #2ecc71;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-link span:hover {
+  text-decoration: underline;
+  color: #27ae60;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+.dashboard-container {
+  padding: 30px;
+}
+
+.dashboard-title {
+  color: #2ecc71;
+}
+
+.dashboard-card {
+  margin-top: 20px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: fit-content;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ff7a00;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dashboard-button:hover {
+  background: #e56f00;
+}
