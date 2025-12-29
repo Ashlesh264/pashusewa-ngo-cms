@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useOutletContext } from "react-router-dom";
+// import { useOutletContext } from "react-router-dom";
 import authService from '../services/authService';
 import DataChart from '../components/common/DataChart';
 import Register from "../components/common/AddUser";
 
 function Users() {
-  const { admin } = useOutletContext();
+  // const { admin } = useOutletContext();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(false)
 
@@ -27,7 +27,7 @@ function Users() {
       fetchUserData();
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchUserData]);
 
   if (!users) {
     return <div className="loading">Loading users list...</div>;

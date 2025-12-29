@@ -1,13 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback} from "react";
 
 export const useAutoLogout = (onLogout) => {
-  const timeout = 1000*60*5;
   const timer = useRef(null);
 
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
+    const timeout = 1000*60*5;
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(onLogout, timeout);
-  };
+  },[onLogout]);
 
   useEffect(() => {
     // Events to track user activity
@@ -17,9 +17,9 @@ export const useAutoLogout = (onLogout) => {
     resetTimer(); // Start timer initially
 
     return () => {
-      if (timer.current) clearTimeout(timer.current);
       window.removeEventListener("mousemove", resetTimer);
       window.removeEventListener("keydown", resetTimer);
+      if (timer.current) clearTimeout(timer.current);
     };
   }, [resetTimer]); 
 };
