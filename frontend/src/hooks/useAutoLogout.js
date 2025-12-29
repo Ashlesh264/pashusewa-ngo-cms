@@ -21,5 +21,5 @@ export const useAutoLogout = (onLogout) => {
       window.removeEventListener("mousemove", resetTimer);
       window.removeEventListener("keydown", resetTimer);
     };
-  }, [onLogout]); 
+  }, [resetTimer]); 
 };

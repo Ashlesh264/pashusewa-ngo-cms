@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useOutletContext } from "react-router-dom";
 import authService from '../services/authService';
 import DataChart from '../components/common/DataChart';
@@ -9,8 +9,8 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(false)
 
-  const fetchUserData = () => {
-    authService.getUsers(admin)
+  const fetchUserData = useCallback(() => {
+    authService.getUsers()
       .then(res => {
         setUsers(res.data);
         setError(false);
@@ -19,7 +19,7 @@ function Users() {
         console.error("Error fetching users", err);
         setError(true);
       });
-  };
+  }, []);
 
   useEffect(() => {
     fetchUserData();

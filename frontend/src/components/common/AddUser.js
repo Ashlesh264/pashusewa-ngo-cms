@@ -9,7 +9,6 @@ function Register() {
         role: ""
     });
     const [showForm, setShowForm] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const handleChange = (e) => {
@@ -30,8 +29,6 @@ function Register() {
           }, 3000)
         } catch (err) {
           setError(err.response?.data?.error ||"Failed to add user");
-        } finally {
-          setLoading(false);
         }
     };
 
