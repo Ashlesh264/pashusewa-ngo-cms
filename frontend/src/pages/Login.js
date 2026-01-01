@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import authService from "../services/authService";
 import VerifyEmail from "../components/common/VerifyEmail";
+import Loader from "../components/common/Loader";
 
 function Login() {
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailVerified, setEmailVerified] = useState(true);
@@ -16,25 +18,26 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoading(true);
         setError("");
         setSuccess("");
 
         try {
             await authService.login(email, password)
             // successful login → go to dashboard
-            setSuccess("Login successful. Redirecting to dashboard... ");
-            setTimeout(() => navigate("/dashboard"), 3000)
+            setSuccess("Login successful.");
+            setTimeout(() => navigate("/dashboard"), 2000)
         } catch (err) {
             if (err.response && err.response.status === 403) {
                 setEmailVerified(false);
                 return;
             }
             setError(err.response?.data?.error || "Something went wrong. Try again.");
-        }
+        } finally {setLoading(false)}
     };
-
     return (
         <div className="auth-container">
+            {loading && <Loader />}
             {emailVerified && (
             <form className="auth-card" onSubmit={handleLogin}>
                 <h2 className="auth-title">PashuSewa</h2>

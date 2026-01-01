@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import Loader from "./Loader";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,7 +33,7 @@ function DataChart(props) {
     }
   }, [props.users]);
 
-  if (loading && !chartData) return <p className="loading-text">Gathering Data...</p>;
+  if (loading && !chartData) return <Loader />;
 
   return (
     <div className="dashboard-content-inner">
@@ -41,7 +42,6 @@ function DataChart(props) {
           <div className="stat-card chart-card">
             <h3>User Role Distribution</h3>
             <div style={{ width: '250px', margin: '0 auto' }}>
-              {/* <Pie data={chartData1} /> */}
               {chartData ? (
                 <Pie data={chartData} />
               ) : (<p>No data available</p>)}

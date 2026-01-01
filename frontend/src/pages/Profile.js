@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import Loader from "../components/common/Loader";
 
 function Profile() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  if (!user) {
-    return <p className="loading">Loading profile data...</p>;
-  }
+  if (!user) {return <Loader />;};
   return (
     <div className="dashboard-card">
       <div className="profile-header">

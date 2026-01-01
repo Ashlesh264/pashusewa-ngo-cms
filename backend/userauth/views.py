@@ -16,34 +16,44 @@ class RegisterView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        user = User.objects.create_user(
-            full_name=request.data["full_name"],
-            username=request.data["email"],  # Use email as username
-            email=request.data["email"],
-            password=request.data["password"],
-            role=request.data.get("role")
-        )
-        otp = generate_otp()
-        save_otp(user.email,otp)
-        send_registration_otp(user.email, user.full_name, otp)  # Assuming you have this function defined
-        return Response({"message": "Registration successful. Check your email to verify."}, status=201)
+        if User.objects.filter(email=request.data["email"]).exists():
+            return Response({"error": "Email is already registered"}, status=400)
+        try:
+            user = User.objects.create_user(
+                full_name=request.data["full_name"],
+                username=request.data["email"],
+                email=request.data["email"],
+                password=request.data["password"],
+                role=request.data.get("role")
+            )
+            otp = generate_otp()
+            save_otp(user.email,otp)
+            send_registration_otp(user.email, user.full_name, otp)
+            return Response({"message": "Registration successful. Check your email to verify."}, status=201)
+        except Exception as e:
+            return Response({"error": "Something went wrong. Please try again later."}, status=500)
 
 class AdminAddedUserView(APIView):
-    permission_classes = [AllowAny] # Or IsAdminUser if only admins use this
+    permission_classes = [AllowAny]
 
     def post(self, request):
-        password=generate_password()
-        user = User.objects.create_user(
-            full_name=request.data["full_name"],
-            username=request.data["email"],  # Use email as username
-            email=request.data["email"],
-            password=password,
-            role=request.data.get("role")
-        )
-        user.is_verified=True
-        user.save()
-        send_admin_added_user_email(user.email, user.full_name, password)
-        return Response({"message": "User created and email sent successfully."}, status=201)
+        if User.objects.filter(email=request.data["email"]).exists():
+            return Response({"error": "User with this email already exists"}, status=400)
+        try:
+            password=generate_password()
+            user = User.objects.create_user(
+                full_name=request.data["full_name"],
+                username=request.data["email"],
+                email=request.data["email"],
+                password=password,
+                role=request.data.get("role")
+            )
+            user.is_verified=True
+            user.save()
+            send_admin_added_user_email(user.email, user.full_name, password)
+            return Response({"message": "User created and email sent successfully."}, status=201)
+        except Exception as e:
+            return Response({"error": "Something went wrong. Please try again later."}, status=500)
 
 class VerifyEmailView(APIView):
     permission_classes = [AllowAny]
@@ -60,7 +70,6 @@ class VerifyEmailView(APIView):
         user.status = "active"
         user.save()
 
-        # remove OTP after success
         cache.delete(f"otp:{email}")
         login(request, user)
         return Response({"message": "Email verified successfully"})
@@ -76,7 +85,7 @@ class LoginView(APIView):
             user_obj = User.objects.get(email=email)
             user = authenticate(
                 request,
-                username=user_obj.username,  # 🔑 key line
+                username=user_obj.username,
                 password=password,
                 full_name=user_obj.full_name,
                 status=user_obj.status

@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import authService from '../services/authService';
 import DataChart from '../components/common/DataChart';
 import Register from "../components/common/AddUser";
+import Loader from '../components/common/Loader';
 
 function Users() {
   // const { admin } = useOutletContext();
@@ -29,9 +30,7 @@ function Users() {
     return () => clearInterval(interval);
   }, [fetchUserData]);
 
-  if (!users) {
-    return <div className="loading">Loading users list...</div>;
-  }
+  if (!users) {return <Loader />};
   return (
     <div className="dashboard-card">
       <DataChart users={users} />

@@ -1,38 +1,25 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import authService from "../services/authService";
-import { useAutoLogout } from "../hooks/useAutoLogout";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import Header from "../components/layout/Header";
 import Sidebar from "../components/layout/Sidebar";
 import Footer from "../components/layout/Footer";
+import Loader from "../components/common/Loader";
 import "../styles/dashboard.css";
 
 function Dashboard() {
   const { user } = useAuth();
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleLogout = async () => {
-    try {
-      await authService.logout(user.email);
-      navigate("/");
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  
 
-  // Auto logout on inactivity
-  useAutoLogout(handleLogout);
-
-  if (!user) {
-    return <p style={{ padding: "20px" }}>Loading dashboard...</p>;
-  }
+  if (!user) {return <Loader />};
   return (
     <div className="dashboard-container">
-      <Sidebar user={user} />
+      <Sidebar user={user} isOpen={isOpen} />
       <div className="dashboard-main-wrapper">
-        <Header user={user} onLogout={handleLogout} />
+        <Header user={user} isOpen={isOpen} toggleSidebar={() => setIsOpen(!isOpen)} />
         <main className="dashboard-content-area">
-          {/* Internal routes (Profile, Users, Home) will render here */}
           <Outlet context={{ user }} /> 
         </main>
         <Footer />

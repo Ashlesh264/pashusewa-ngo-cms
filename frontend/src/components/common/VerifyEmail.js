@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/authService";
+import Loader from "./Loader";
 import "../../styles/auth.css";
 
 function VerifyEmail(props) {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
-  // const [canResend, setCanResend] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,28 +27,27 @@ function VerifyEmail(props) {
     try {
       await authService.verifyEmail(props.email,otp);
       setSuccess("Email verified successfully. Redirecting to dashboard...");
-      setTimeout(() => navigate("/dashboard"), 3000);
+      setTimeout(() => navigate("/dashboard"), 2000);
     } catch (err) {
       setError(err.response?.data?.error || "OTP verification failed. Please try again.");
-    }
+    } finally {setLoading(false)}
   }
 
   const handleResend = async () => {
+    setLoading(true);
     setError("");
     setSuccess("");
     try {
       await authService.resendOtp(props.email,props.purpose)
       setSuccess("OTP resend successfully.");
       setTimer(60);
-      // setCanResend(false);
     } catch (err) {
       setError(err.response?.data?.error || "Failed to resend OTP.");
-      
-    }
+    } finally {setLoading(false)}
   }
-
   return (
     <form className="auth-card" onSubmit={handleVerify}>
+      {loading && <Loader />}
       <h2 className="auth-title">PashuSewa</h2>
       <p className="auth-subtitle">Verify your Email</p>
 

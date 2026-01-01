@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar(props) {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${props.isOpen ? "open" : "hidden"}`}>
       <h2 className="sidebar-logo">PashuSewa</h2><hr/>
       <nav className="sidebar-menu">
         <NavLink to="/dashboard" end className={({ isActive }) => isActive ? "active-link" : ""}>🏠 Dashboard</NavLink>

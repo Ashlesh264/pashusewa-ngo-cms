@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import VerifyEmail from "../components/common/VerifyEmail";
+import Loader from "../components/common/Loader";
 
 function SignUp() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         full_name: "",
         email: "",
@@ -16,7 +18,7 @@ function SignUp() {
     const [success, setSuccess] = useState("");
     const [otpSent, setOtpSent] = useState(false);
 
-    useEffect(() => { document.title = `Register | PashuSewa Sanstha 🐾`;}, []);
+    useEffect(() => { document.title = `SignUp | PashuSewa Sanstha 🐾`;}, []);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,7 +26,9 @@ function SignUp() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setLoading(true);
         setError("");
+        setSuccess("");
         try {
             await authService.register(form);
             setRegisteredEmail(form.email);
@@ -38,11 +42,12 @@ function SignUp() {
             });
         } catch (err) {
             setError(err.response?.data?.error ||"Registration failed");
-        }
+        } finally {setLoading(false)}
     };
 
     return (
         <div className="auth-container">
+            {loading && <Loader />}
             {!otpSent && (
             <form className="auth-card" onSubmit={handleRegister}>
                 <h2 className="auth-title">PashuSewa</h2>

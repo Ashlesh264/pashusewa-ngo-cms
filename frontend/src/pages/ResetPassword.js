@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import authService from '../services/authService';
+import Loader from '../components/common/Loader'
 
 function ResetPassword() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const get = useLocation();
     const [email, setEmail] = useState(get.state?.email || "");
     const [otp, setOtp] = useState("");
@@ -18,6 +20,7 @@ function ResetPassword() {
 
     const handleReset = async (e) => {
         e.preventDefault();
+        setLoading(true);
         setError("");
         setSuccess("");
 
@@ -28,7 +31,7 @@ function ResetPassword() {
                 setStep(2);
             } catch (err) {
                 setError(err.response?.data?.error || "Failed to OTP Send");
-            }
+            } finally {setLoading(false)}
             return;
         } 
         if(step===2){
@@ -38,7 +41,7 @@ function ResetPassword() {
                 setStep(3);
             } catch (err) {
                 setError(err.response?.data?.error || "OTP verification failed. Please try again.");
-            }
+            } finally {setLoading(false)}
             return;
         }
         if(step===3){
@@ -50,12 +53,13 @@ function ResetPassword() {
                 } else {setError("Passwords do not match. Please check again.");}
             } catch (err) {
                 setError(err.response?.data?.error || "Reset password failed.");
-            }
+            } finally {setLoading(false)}
         }
     };
 
     return (
         <div className="auth-container">
+            {loading && <Loader />}
             <form className="auth-card" onSubmit={handleReset}>
                 <h2 className="auth-title">PashuSewa</h2>
                 <p className="auth-subtitle">Set New Password</p>
