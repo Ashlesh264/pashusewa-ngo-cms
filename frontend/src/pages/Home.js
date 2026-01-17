@@ -1,16 +1,21 @@
-import { useNavigate } from 'react-router-dom';
-import '../styles/auth.css';
+import HomeLayout from "../layouts/HomeLayout";
+import HeroBanner from "../components/HeroBanner";
+import VisionMission from "../components/VisionMission";
+import Statistics from "../components/Statistics";
+import Initiatives from "../components/Initiatives";
 
 function Home() {
-  const navigate = useNavigate();
   return (
-    <div className="home-container">
-      <h1>Welcome to PashuSewa</h1>
-      <div className="auth-card">
-        <button className="auth-button" onClick={() => navigate("/login")}>Login</button><br/><br/>
-        <button className="auth-button" onClick={() => navigate("/signup")}>SignUp</button>
-      </div>
-    </div>
+    <HomeLayout>
+      <HeroBanner />
+      <VisionMission />
+      <Statistics />
+      <Initiatives />
+      <section className="home-cta">
+        <h2>Be a Part of the Change</h2>
+        <button className="primary-btn">Support Our Cause</button>
+      </section>
+    </HomeLayout>
   );
 }
 

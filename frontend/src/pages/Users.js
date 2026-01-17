@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 // import { useOutletContext } from "react-router-dom";
 import authService from '../services/authService';
-import DataChart from '../components/common/DataChart';
-import Register from "../components/common/AddUser";
-import Loader from '../components/common/Loader';
+import DataChart from '../components/DataChart';
+import AddUser from "../components/AddUser";
+import Loader from '../components/Loader';
 
 function Users() {
   // const { admin } = useOutletContext();
@@ -74,7 +74,7 @@ function Users() {
               ))}
             </tbody>
           </table>
-          <Register/>
+          <AddUser/>
         </div>
       )}
     </div>
