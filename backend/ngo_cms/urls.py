@@ -23,5 +23,6 @@ urlpatterns = [
 
     # our auth endpoints
     path("api/userauth/", include("userauth.urls")),
+    path("api/homepage/", include("homepage.urls")),
 
 ]
