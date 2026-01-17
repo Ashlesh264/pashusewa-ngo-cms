@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import Header from "../components/layout/Header";
-import Sidebar from "../components/layout/Sidebar";
-import Footer from "../components/layout/Footer";
-import Loader from "../components/common/Loader";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 import "../styles/dashboard.css";
 
 function Dashboard() {

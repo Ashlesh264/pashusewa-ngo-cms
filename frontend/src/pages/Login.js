@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import authService from "../services/authService";
-import VerifyEmail from "../components/common/VerifyEmail";
-import Loader from "../components/common/Loader";
+import VerifyEmail from "../components/VerifyEmail";
+import Loader from "../components/Loader";
 
 function Login() {
     const [loading, setLoading] = useState(false);

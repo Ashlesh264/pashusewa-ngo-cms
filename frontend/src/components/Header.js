@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import authService from "../../services/authService";
-import { useAutoLogout } from "../../hooks/useAutoLogout";
+import authService from "../services/authService";
+import { useAutoLogout } from "../hooks/useAutoLogout";
 
 function Header(props) {
   
