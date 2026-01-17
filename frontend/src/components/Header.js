@@ -13,7 +13,22 @@ function Header(props) {
       console.error(e);
     }
   };
-  useAutoLogout(handleLogout);
+  useAutoLogout({
+    enabled: props.variant === "dashboard",
+    onLogout: handleLogout
+  });
+
+  if (props.variant === "home") {
+    return (
+      <header className="header">
+        <h2>PashuSewa Sanstha</h2>
+        <nav>
+          <button onClick={() => navigate("/login")}>Login</button>
+          <button onClick={() => navigate("/register")}>Sign Up</button>
+        </nav>
+      </header>
+    );
+  }
 
   return (
     <header className="header">
