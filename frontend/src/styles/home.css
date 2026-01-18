@@ -41,10 +41,6 @@
 
 /* HERO */
 .home-hero {
-  background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.55)
-  ), url("../") center/cover no-repeat;
   color: white;
   padding: 100px 20px;
   text-align: center;
