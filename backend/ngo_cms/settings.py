@@ -188,6 +188,10 @@ BREVO_SENDER_EMAIL = os.getenv("BREVO_SENDER_EMAIL")
 BREVO_SENDER_NAME = os.getenv("BREVO_SENDER_NAME")
 DEFAULT_FROM_EMAIL = "PashuSewa <no-reply@pashusewa.org>"
 
+# Media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 CACHES = {
     'default': {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
