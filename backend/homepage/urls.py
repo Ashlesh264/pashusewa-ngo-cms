@@ -1,5 +1,6 @@
 from django.urls import path
+from .views import banner_list
 
 urlpatterns = [
-    # APIs will be added later
+    path("banners/", banner_list, name="banner-list"),
 ]
