@@ -1,0 +1,157 @@
+.home-container .header {
+  background: var(--white);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.home-container .header h2 {
+  color: var(--primary);
+  margin: 0;
+}
+
+.home-container .header nav {
+  display: flex;
+  gap: 12px;
+}
+
+.home-container .header button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.home-container .header button:hover {
+  background: var(--primary-dark);
+}
+
+.home-container .menu-btn,
+.home-container .logout-btn {
+  display: none;
+}
+
+.home-container .footer {
+  background: #f9fafb;
+}
+
+.home-container main {
+  background: var(--bg-light);
+}
+
+/* HERO */
+.home-hero {
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: auto;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: white;
+  padding: 12px 26px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 26px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* VISION */
+.home-vision {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+}
+
+.home-vision h2 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+/* STATS */
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  background: white;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 25px;
+  border-radius: 12px;
+  background: var(--bg-light);
+}
+
+.stat-box h3 {
+  font-size: 32px;
+  color: var(--primary);
+}
+
+/* INITIATIVES */
+.home-initiatives {
+  padding: 60px 20px;
+}
+
+.home-initiatives h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary);
+}
+
+.initiative-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 20px;
+}
+
+.initiative-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* CTA */
+.home-cta {
+  background: var(--primary);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.home-cta h2 {
+  margin-bottom: 20px;
+}

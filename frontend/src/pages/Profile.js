@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import Loader from "../components/common/Loader";
+import Loader from "../components/Loader";
 
 function Profile() {
   const navigate = useNavigate();

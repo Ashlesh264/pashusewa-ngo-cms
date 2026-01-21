@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
-import VerifyEmail from "../components/common/VerifyEmail";
-import Loader from "../components/common/Loader";
+import VerifyEmail from "../components/VerifyEmail";
+import Loader from "../components/Loader";
 
 function SignUp() {
     const navigate = useNavigate();

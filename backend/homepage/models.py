@@ -1,3 +1,22 @@
 from django.db import models
 
-# Create your models here.
+class Banner(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to="banners/")
+    order = models.PositiveIntegerField(default=0)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title
+
+class VisionMission(models.Model):
+    vision = models.TextField()
+    mission = models.TextField()
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Vision & Mission"
