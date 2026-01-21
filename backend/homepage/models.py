@@ -34,3 +34,17 @@ class Statistic(models.Model):
     def __str__(self):
         return self.label
 
+class Initiative(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+    image = models.ImageField(upload_to="initiatives/")
+    order = models.PositiveIntegerField(default=0)
+    status = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title
+
