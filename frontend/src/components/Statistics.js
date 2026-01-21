@@ -1,18 +1,24 @@
+import { useEffect, useState } from "react";
+import homepageService from "../services/homepageService";
+
 function Statistics() {
+  const [statistics, setStatistics] = useState([]);
+
+  useEffect(() => {
+    homepageService
+      .getStatistics()
+      .then((res) => setStatistics(res.data))
+      .catch((err) => console.error("Error fetching statistics:", err));
+  }, []);
+
   return (
     <section className="home-stats">
-      <div className="stat-box">
-        <h3>500+</h3>
-        <p>Animals Rescued</p>
-      </div>
-      <div className="stat-box">
-        <h3>1200+</h3>
-        <p>Treatments Given</p>
-      </div>
-      <div className="stat-box">
-        <h3>300+</h3>
-        <p>Successful Adoptions</p>
-      </div>
+      {statistics.map((stat) => (
+        <div className="stat-box" key={stat.label}>
+          <h3>{stat.value}</h3>
+          <p>{stat.label}</p>
+        </div>
+      ))}
     </section>
   );
 }
