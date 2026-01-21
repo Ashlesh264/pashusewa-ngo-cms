@@ -7,3 +7,10 @@ class BannerAdmin(admin.ModelAdmin):
     list_editable = ("order", "status")
     list_filter = ("status",)
     search_fields = ("title",)
+
+from django.contrib import admin
+from .models import VisionMission
+
+@admin.register(VisionMission)
+class VisionMissionAdmin(admin.ModelAdmin):
+    list_display = ("updated_at",)

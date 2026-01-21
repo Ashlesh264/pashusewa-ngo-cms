@@ -12,3 +12,11 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.title
+
+class VisionMission(models.Model):
+    vision = models.TextField()
+    mission = models.TextField()
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Vision & Mission"
