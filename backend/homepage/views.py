@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Banner, VisionMission
-from .serializers import BannerSerializer, VisionMissionSerializer
+from .models import Banner, VisionMission, Statistic
+from .serializers import BannerSerializer, VisionMissionSerializer, StatisticSerializer
 
 @api_view(["GET"])
 def banner_list(request):
@@ -21,3 +21,10 @@ def vision_mission_view(request):
 
     serializer = VisionMissionSerializer(vision_mission)
     return Response(serializer.data)
+
+@api_view(["GET"])
+def statistics_list(request):
+    stats = Statistic.objects.filter(status=True).order_by("order")
+    serializer = StatisticSerializer(stats, many=True)
+    return Response(serializer.data)
+

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Banner, VisionMission
+from .models import Banner, VisionMission, Statistic
 
 class BannerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,3 +10,9 @@ class VisionMissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = VisionMission
         fields = ["vision", "mission", "updated_at"]
+
+class StatisticSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Statistic
+        fields = ["label", "value", "order"]
+
