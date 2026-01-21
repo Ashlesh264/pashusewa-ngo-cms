@@ -14,3 +14,10 @@ from .models import VisionMission
 @admin.register(VisionMission)
 class VisionMissionAdmin(admin.ModelAdmin):
     list_display = ("updated_at",)
+
+from .models import Statistic
+
+@admin.register(Statistic)
+class StatisticAdmin(admin.ModelAdmin):
+    list_display = ("label", "value", "order", "status")
+    list_editable = ("value", "order", "status")

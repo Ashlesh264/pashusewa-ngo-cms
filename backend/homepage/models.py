@@ -20,3 +20,17 @@ class VisionMission(models.Model):
 
     def __str__(self):
         return "Vision & Mission"
+
+class Statistic(models.Model):
+    label = models.CharField(max_length=100)
+    value = models.PositiveIntegerField()
+    order = models.PositiveIntegerField(default=0)
+    status = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.label
+
