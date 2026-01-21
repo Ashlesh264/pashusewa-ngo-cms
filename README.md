@@ -43,7 +43,7 @@ The project is built with a professional GitHub workflow, phase-wise releases, a
 - ✅ Phase 1 – Base Setup (v0.1.0)  
 - ✅ Phase 2 – Banner Slider CMS (v0.2.0)  
 - ✅ Phase 3 – Vision & Mission CMS (v0.3.0)
-- ⏳ Phase 4 – Statistics CMS  
+- ✅ Phase 4 – Statistics CMS (v0.4.0)
 - ⏳ Phase 5 – Initiatives CMS  
 - ⏳ Phase 6 – Finalization  
 
@@ -74,7 +74,8 @@ The project is built with a professional GitHub workflow, phase-wise releases, a
 
 - v0.1.0 – Assignment-2 Phase 1  
 - v0.2.0 – Assignment-2 Phase 2
-- v0.3.0 – Assignment-2 Phase 3  
+- v0.3.0 – Assignment-2 Phase 3 
+- v0.4.0 – Assignment-2 Phase 4  
 - Assignment-1 – Authentication Module (Completed)
 
 ---
